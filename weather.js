@@ -23,7 +23,7 @@ const STORE = {
 function render() {
   //add else if for 'view-three'
   if (STORE.view === 'view-two') {
-    displayCurrentWeather();
+    renderHTML();
   }
 }
 
@@ -37,29 +37,35 @@ function getCurrentWeatherFromApi(){
 }
 
 function getForecastFromApi(){
-  $.getJSON(`${API_CREDS.forecastEndpoint}q=${STORE.location},us&APPID=${apiKey}&units=imperial`,(data) => {
-    console.log(data);
-  });
+  $.getJSON(`${API_CREDS.forecastEndpoint}q=${STORE.location},us&APPID=${apiKey}&units=imperial&dt=imperial`,(forecastData) => {
+  console.log(forecastData);
+});
 }
 
-function displayCurrentWeather(){
-	//adds data to DOM
-  //renderHTML()
-}
 
 function renderHTML(){
-  return `
-		<div class="container day today">
-		<p>${STORE.currentWeather.main.temp}</p>
-		<p>Hi: (num)</p>
-		<p>Lo: (num)</p>
-		<p>(Sunny)</p>
-		<p>Chance of rain/snow: (num)</p>
-	</div>`
+		
+  $('.results').html(`<div class="container day today">
+		<p>Current Temp: ${STORE.currentWeather.main.temp}</p>
+		<p>Hi: ${STORE.currentWeather.main.temp_max}</p>
+		<p>Lo: ${STORE.currentWeather.main.temp_min}</p>
+		<p> Whats the sky like?: ${STORE.currentWeather.weather[0].description}</p>
+	</div>
+  <button type='button' class='next'>Next 3 Days</button>
+  `);
 }
 
 
 
+function watchNextClick(){
+  $('.results').on('click', '.next', (event) => {
+    STORE.view = 'view-three';
+    getForecastFromApi()
+
+
+  });
+}
+watchNextClick();
 
 function watchSubmit(){
 
