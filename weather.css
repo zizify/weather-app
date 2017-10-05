@@ -1,0 +1,15 @@
+h1, form {
+    text-align: center;
+}
+
+form {
+    padding-bottom: 40px;
+}
+
+.day {
+    margin: 0 auto;
+    border: 1px darkgray;
+    border-radius: 10px;
+    background-color: peru;
+    padding: 15px;
+}
