@@ -13,20 +13,39 @@ const STORE = {
   ]
 };
 
-function getCurrentWeatherFromApi(searchTerm, callback){
-  $.getJSON(`http://api.openweathermap.org/data/2.5/weather?q=${query}&APPID=${apiKey}&units=imperial`,(data) => {
+function getCurrentWeatherFromApi(){
+  $.getJSON(`http://api.openweathermap.org/data/2.5/weather?q=${STORE.location},us&APPID=${apiKey}&units=imperial`,(data) => {
+    STORE.currentWeather = data;
+    STORE.view = 'view-two'
+    console.log(STORE.currentWeather);
+  });
+}
+
+function getForecastFromApi(){
+  $.getJSON(`http://api.openweathermap.org/data/2.5/forecast?q=${STORE.location},us&APPID=${apiKey}&units=imperial`,(data) => {
     console.log(data);
   });
 }
 
-function getForecastFromApi(callback){
-  $.getJSON(`http://api.openweathermap.org/data/2.5/forecast?q=${STORE.location}&APPID=${apiKey}&units=imperial`,(data) => {
-    console.log(data);
-  });
+
+
+function displayCurrentWeatherToDom(){
+  //Take in rendered html and display on the dom
 }
+
+function renderHTML(){
+
+}
+
+
+
 
 function watchSubmit(){
   //after user clicks submit capture the data
-  //
+  //clear out the search field
+  //pass the cityName to STORE.location
+  //call the getCurrentWeatherFromApi function
+  //call a display to dom function
+  render();
 }
-
+$(watchSubmit);
