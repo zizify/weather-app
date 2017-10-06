@@ -38,16 +38,18 @@ function render() {
 }
 function getGiphyStuff(){
   $.getJSON(`${creds.giphyEndpoint}api_key=${creds.giphyApiKey}&tag=Rainy`,(data) => {
+    console.log(data);
     backgrounds.rain = data.data.image_original_url;
   });
 
   $.getJSON(`${creds.giphyEndpoint}api_key=${creds.giphyApiKey}&tag=Sun`,(data) => {
+    console.log(data);
     backgrounds.sunny = data.data.image_original_url;
   });
 
   $.getJSON(`${creds.giphyEndpoint}api_key=${creds.giphyApiKey}&tag=Clouds`,(data) => {
+    console.log(data);
     backgrounds.cloudy = data.data.image_original_url;
-    console.log(backgrounds.cloudy);
   });
 }
 
@@ -108,51 +110,58 @@ function renderNextHTML() {
 function changeColor(day, directory) {
 	
   let num = directory.weather[0].id;
+  let weatherClass = '';
 
   if (num < 300) {
     $('body').css('background-image', `url('${backgrounds.rain}')`);
-    $(day).addClass('thunder');
+    weatherClass = 'thunder';
     $(day).append(`<div style="width:10%;height:0;padding-bottom:10%;position:relative;">
 		<iframe src="https://giphy.com/embed/VtOUGnwCOouCQ" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed">
 		</iframe></div>`);
   }
   else if (num >= 300 && num < 600) {
     $('body').css('background-image', `url('${backgrounds.rain}')`);
-    $(day).addClass('rain');
+    weatherClass = 'rain';
     $(day).append(`<div style="width:10%;height:0;padding-bottom:10%;position:relative;">
 		<iframe src="https://giphy.com/embed/3ov9jCEFMBtCy54q6Q" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed">
 		</iframe></div>`);
   }
   else if (num >= 600 && num < 700) {
     $('body').css('background-image', `url('${backgrounds.cloudy}')`);
-    $(day).addClass('clouds-snow');
+    weatherClass = 'clouds-snow';
     $(day).append(`<div style="width:10%;height:0;padding-bottom:10%;position:relative;">
 		<iframe src="https://giphy.com/embed/mBwNH39wXmJDq" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed">
 		</iframe></div>`);
   }
   else if (num >= 700 && num < 800) {
     $('body').css('background-image', `url('${backgrounds.cloudy}')`);
-    $(day).addClass('fog');
+    weatherClass = 'clouds-snow';
+    $(day).append(`<div style="width:10%;height:0;padding-bottom:10%;position:relative;">
+		<iframe src="https://giphy.com/embed/xUPGcL7GsJ5398axOg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed">
+		</iframe></div>`);
   }
   else if (num === 800) {
     $('body').css('background-image', `url('${backgrounds.sunny}')`);
-    $(day).addClass('clear');
+    weatherClass = 'clear';
     $(day).append(`<div style="width:10%;height:0;padding-bottom:10%;position:relative;">
 		<iframe src="https://giphy.com/embed/xUPGcL7GsJ5398axOg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed">
 		</iframe></div>`);
   }
   else if (num > 800 && num < 900) {
-    $(day).addClass('clouds-snow');
+    $('body').css('background-image', `url('${backgrounds.cloudy}')`);
+    weatherClass = 'clouds-snow';
     $(day).append(`<div style="width:10%;height:0;padding-bottom:10%;position:relative;">
 		<iframe src="https://giphy.com/embed/RHQtNg5bQ123C" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed">
 		</iframe></div>`);
   }
   else if (num >= 900 & num < 910) {
-    $(day).addClass('severe');
+    weatherClass = 'severe';
     $(day).append(`<div style="width:10%;height:0;padding-bottom:10%;position:relative;">
 		<iframe src="https://giphy.com/embed/sN2N93vQwhsys" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed">
 		</iframe></div>`);
   }
+
+  $(day).addClass(weatherClass);
 }
 
 
@@ -180,6 +189,8 @@ function watchSubmit(){
     STORE.location = loc;
 
     $('.input-location').val('');
+
+    $('.next-three').children().remove();
 
     STORE.currentWeather = {};
     STORE.forecast = [];

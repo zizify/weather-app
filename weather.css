@@ -56,10 +56,6 @@ h2 {
     font-size: 40px;
 }
 
-.hide {
-    display: none;
-}
-
 .large, .larger {
     font-weight: bold;
     font-family: 'Encode Sans Expanded';
