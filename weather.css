@@ -1,3 +1,25 @@
+* {
+    font-family: 'Catamaran';
+}
+
+body {
+    background-image: url('https://media.giphy.com/media/ZnKdSM5piRLDW/giphy.gif');
+    background-size: 100%;
+}
+
+.main {
+    margin-top: 15%;
+    padding: 30px;
+    background-color: rgba(249, 227, 247, 0.52);
+    border-radius: 20px;
+    border: 2px solid silver;
+}
+
+h1 {
+    font-weight: bold;
+    padding: 20px 0px;
+}
+
 h1, form {
     text-align: center;
 }
@@ -6,10 +28,77 @@ form {
     padding-bottom: 40px;
 }
 
+input {
+    height: 47px;
+    border-radius: 5px;
+    border: 1px;
+    padding-left: 20px;
+    vertical-align: bottom;
+}
+
+h2 {
+    font-size: 40px;
+    padding: 20px 0px;
+}
+
 .day {
     margin: 0 auto;
+    margin-bottom: 30px;
     border: 1px darkgray;
     border-radius: 10px;
-    background-color: peru;
+    opacity: 0.8;
+    background-color: white;
     padding: 15px;
+}
+
+.conditions {
+    font-variant: small-caps;
+    font-size: 40px;
+}
+
+.hide {
+    display: none;
+}
+
+.large, .larger {
+    font-weight: bold;
+    font-family: 'Encode Sans Expanded';
+}
+
+.larger {
+    font-size: 35px;
+}
+
+.large {
+    font-size: 30px;
+}
+
+.thunder {
+    background-color: lightslategray;
+    border: 5px solid yellow;
+}
+
+.clouds-snow {
+    background-color: white;
+    border: 5px solid gray;
+}
+
+.rain {
+    background-color: lightskyblue;
+    border: 5px solid blue;
+}
+
+.fog {
+    background-color: gray;
+    border: 5px solid lightslategray;
+}
+
+.clear {
+    background-color: #A6F9FF;
+    border: 5px solid #FFED4B;
+}
+
+.severe {
+    background-color: red;
+    border: 5px solid darkred;
 }
