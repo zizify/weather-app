@@ -94,11 +94,15 @@ h2 {
 }
 
 .clear {
-    background-color: #A6F9FF;
+    background-color: #77C9FF;
     border: 5px solid #FFED4B;
 }
 
 .severe {
     background-color: red;
     border: 5px solid darkred;
+}
+
+.text, .sticker {
+    display: inline-block;
 }
